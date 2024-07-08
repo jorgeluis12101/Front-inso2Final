@@ -1,0 +1,83 @@
+<mat-toolbar class="app-header">
+    <span>MyApp</span>
+    <span class="spacer"></span>
+</mat-toolbar>
+
+<div class="container mt-4">
+    <h2 class="mb-4">Registrar Deuda Fiscal</h2>
+    <button mat-button (click)="goBack()" class="back-button">Retroceder</button> <!-- Botón de retroceso -->
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="numberDocument" class="form-label">Número de Documento</label>
+                <input id="numberDocument" class="form-control" formControlName="numberDocument" type="text">
+                <div *ngIf="registerForm.get('numberDocument')?.invalid && registerForm.get('numberDocument')?.touched"
+                    class="invalid-feedback">
+                    Número de documento es requerido.
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="company" class="form-label">Compañía</label>
+                <input id="company" class="form-control" formControlName="company" type="text">
+                <div *ngIf="registerForm.get('company')?.invalid && registerForm.get('company')?.touched"
+                    class="invalid-feedback">
+                    Compañía es requerida.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="amount" class="form-label">Monto</label>
+                <input id="amount" class="form-control" formControlName="amount" type="number">
+                <div *ngIf="registerForm.get('amount')?.invalid && registerForm.get('amount')?.touched"
+                    class="invalid-feedback">
+                    Monto es requerido.
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="dateExpiration" class="form-label">Fecha de Expiración</label>
+                <input id="dateExpiration" class="form-control" formControlName="dateExpiration" type="date">
+                <div *ngIf="registerForm.get('dateExpiration')?.invalid && registerForm.get('dateExpiration')?.touched"
+                    class="invalid-feedback">
+                    Fecha de expiración es requerida.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="period" class="form-label">Periodo</label>
+                <input id="period" class="form-control" formControlName="period" type="text">
+                <div *ngIf="registerForm.get('period')?.invalid && registerForm.get('period')?.touched"
+                    class="invalid-feedback">
+                    Periodo es requerido.
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="name" class="form-label">Nombre</label>
+                <input id="name" class="form-control" formControlName="name" type="text">
+                <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched"
+                    class="invalid-feedback">
+                    Nombre es requerido.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="address" class="form-label">Dirección</label>
+                <input id="address" class="form-control" formControlName="address" type="text">
+                <div *ngIf="registerForm.get('address')?.invalid && registerForm.get('address')?.touched"
+                    class="invalid-feedback">
+                    Dirección es requerida.
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-success">Registrar Deuda Fiscal</button>
+        </div>
+    </form>
+</div>

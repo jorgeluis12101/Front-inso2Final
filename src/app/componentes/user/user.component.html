@@ -1,0 +1,56 @@
+<mat-toolbar class="app-header">
+    <span>MyApp</span>
+    <span class="spacer"></span>
+</mat-toolbar>
+
+<div class="container">
+    <button mat-button [matMenuTriggerFor]="menu" class="register-button">Registrar Deuda</button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="registrarDeuda('invoice')">Deuda de Factura</button>
+        <button mat-menu-item (click)="registrarDeuda('loan')">Deuda de Préstamo</button>
+        <button mat-menu-item (click)="registrarDeuda('utility')">Deuda de Servicio</button>
+        <button mat-menu-item (click)="registrarDeuda('tax')">Deuda Fiscal</button> <!-- Nueva opción -->
+    </mat-menu>
+
+    <div class="navigation">
+        <button mat-icon-button (click)="previousMonth()">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span>{{ getMonthName(currentMonth) }} {{ currentYear }}</span>
+        <button mat-icon-button (click)="nextMonth()">
+            <mat-icon>arrow_forward</mat-icon>
+        </button>
+        <button mat-button (click)="goToCurrentMonth()">Hoy</button>
+    </div>
+
+    <div class="alert" *ngIf="alertMessage"
+        [ngClass]="{'alert-danger': alertDebts && alertDebts.length > 0, 'alert-success': !alertDebts || alertDebts.length === 0}">
+        {{ alertMessage }}
+    </div>
+
+    <div class="legend">
+        <span class="legend-item green-header" (click)="filterDebts('paid')">Pagado</span>
+        <span class="legend-item red-header" (click)="filterDebts('red')">Vencido y no pagado</span>
+        <span class="legend-item yellow-header" (click)="filterDebts('yellow')">Vence esta semana</span>
+        <span class="legend-item black-header" (click)="filterDebts('black')">Vence en el futuro</span>
+        <span class="legend-item" (click)="filterDebts('all')">Mostrar todos</span>
+    </div>
+
+    <div class="debt-cards">
+        <mat-card class="debt-card" *ngFor="let debt of filteredDebts">
+            <div class="debt-card-header" [ngClass]="getCardColorClass(debt)"></div>
+            <mat-card-header>
+                <mat-card-title>{{ debt.company }}</mat-card-title>
+                <mat-card-subtitle>{{ debt.dateExpiration | date }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>Monto: {{ debt.amount | currency }}</p>
+                <p>Estado: <span [ngClass]="{'paid': debt.isPaid, 'unpaid': !debt.isPaid}">{{ debt.isPaid ? 'Pagado' :
+                        'No Pagado' }}</span></p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button class="pay-button" (click)="payDebt(debt)" *ngIf="!debt.isPaid">Pagar</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

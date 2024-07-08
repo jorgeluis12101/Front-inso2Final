@@ -1,0 +1,21 @@
+.back-button {
+    border: 2px solid #007bff; /* Marco azul */
+    border-radius: 4px; /* Bordes redondeados */
+    padding: 8px 16px; /* Espaciado interno */
+    color: #007bff; /* Color del texto */
+    background-color: white; /* Fondo blanco */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave */
+    cursor: pointer;
+    margin-bottom: 15px; /* Margen inferior para separación */
+}
+
+.back-button:hover {
+    background-color: #007bff; /* Fondo azul al pasar el mouse */
+    color: white; /* Color del texto al pasar el mouse */
+}
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3f51b5 !important; /* Azul predeterminado */
+}

@@ -1,0 +1,167 @@
+/* Barra de navegación */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3f51b5 !important; /* Azul predeterminado */
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+/* Contenedor principal */
+.container {
+    padding: 16px;
+}
+
+/* Navegación */
+.navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.navigation span {
+    margin: 0 16px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Alerta */
+.alert {
+    text-align: center;
+    margin-bottom: 16px;
+    padding: 10px;
+}
+
+.alert-danger {
+    border: 1px solid red;
+    background-color: #ffdddd;
+}
+
+.alert-success {
+    border: 1px solid green;
+    background-color: #ddffdd;
+}
+
+/* Tarjetas de deuda */
+.debt-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+
+.debt-card {
+    flex: 1 1 calc(25% - 16px); /* Ajusta la cantidad de tarjetas por fila aquí */
+    min-width: 250px;
+    margin-bottom: 16px;
+    transition: transform 0.2s;
+    position: relative;
+}
+
+.debt-card:hover {
+    transform: scale(1.05);
+}
+
+.debt-card-header {
+    height: 8px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Colores de cabecera de deuda */
+.green-header {
+    background-color: green !important;
+}
+
+.red-header {
+    background-color: red !important;
+}
+
+.yellow-header {
+    background-color: yellow !important;
+    color: black;
+}
+
+.black-header {
+    background-color: black !important;
+}
+
+/* Estado de la deuda */
+.paid {
+    color: green;
+}
+
+.unpaid {
+    color: red;
+}
+
+/* Leyenda */
+.legend {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.legend-item {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.green-header.legend-item {
+    background-color: green;
+}
+
+.red-header.legend-item {
+    background-color: red;
+}
+
+.yellow-header.legend-item {
+    background-color: yellow;
+    color: black;
+}
+
+.black-header.legend-item {
+    background-color: black;
+}
+
+.legend-item:hover {
+    opacity: 0.8;
+}
+
+/* Botón de Pagar */
+.pay-button {
+    border: 2px solid #3f51b5; /* Color del borde */
+    border-radius: 8px; /* Radio del borde */
+    padding: 8px 16px; /* Espaciado interno */
+    color: #3f51b5; /* Color del texto */
+    transition: background-color 0.3s, color 0.3s; /* Transiciones suaves */
+}
+
+.pay-button:hover {
+    background-color: #3f51b5; /* Color de fondo al pasar el cursor */
+    color: white; /* Color del texto al pasar el cursor */
+}
+.register-button {
+    border: 2px solid #007bff; /* Marco azul */
+    border-radius: 4px; /* Bordes redondeados */
+    padding: 8px 16px; /* Espaciado interno */
+    color: #007bff; /* Color del texto */
+    background-color: white; /* Fondo blanco */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave */
+    cursor: pointer;
+    margin-bottom: 15px; /* Margen inferior para separación */
+}
+
+.register-button:hover {
+    background-color: #007bff; /* Fondo azul al pasar el mouse */
+    color: white; /* Color del texto al pasar el mouse */
+}
