@@ -147,4 +147,11 @@ export class UserComponent implements OnInit {
       this.router.navigate(['registrar4']);
     }
   }
+
+  logout() {
+    // Aquí va la lógica para cerrar sesión, por ejemplo, eliminar el token de autenticación
+    localStorage.removeItem('authToken');
+    // Navegar a la página de inicio de sesión u otra página
+    this.router.navigate(['/login-registro']);
+  }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrardeuda4',
@@ -14,7 +15,8 @@ export class Registrardeuda4Component {
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private location: Location // Inyección de Location para manejar la navegación
+    private location: Location,
+    private router: Router
   ) {
     this.registerForm = this.formBuilder.group({
       numberDocument: ['', Validators.required],
@@ -42,5 +44,12 @@ export class Registrardeuda4Component {
         }
       );
     }
+  }
+
+  logout() {
+    // Aquí va la lógica para cerrar sesión, por ejemplo, eliminar el token de autenticación
+    localStorage.removeItem('authToken');
+    // Navegar a la página de inicio de sesión u otra página
+    this.router.navigate(['/login-registro']);
   }
 }

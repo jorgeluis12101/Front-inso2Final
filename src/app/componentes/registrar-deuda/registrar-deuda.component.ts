@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrar-deuda',
@@ -13,7 +14,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class RegistrarDeudaComponent implements OnInit {
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private snackBar: MatSnackBar, private location: Location) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private snackBar: MatSnackBar, private location: Location,private router: Router) {
     this.registerForm = this.fb.group({
       numberDocument: ['', Validators.required],
       company: ['', Validators.required],
@@ -81,5 +82,12 @@ export class RegistrarDeudaComponent implements OnInit {
 
   goBack() {
     this.location.back();
+  }
+
+  logout() {
+    // Aquí va la lógica para cerrar sesión, por ejemplo, eliminar el token de autenticación
+    localStorage.removeItem('authToken');
+    // Navegar a la página de inicio de sesión u otra página
+    this.router.navigate(['/login-registro']);
   }
 }
