@@ -38,22 +38,22 @@ export class AuthService {
   public register(user: any): Observable<any> {
     return this.http.post(`${baserUrl}/api/v1/user/registrar`, user);
   }
-
   public setToken(token: string): void {
     localStorage.setItem('token', token);
     this.loggedIn.next(true);
     this.checkToken();
   }
-
+  
   public getToken(): string | null {
     return localStorage.getItem('token');
   }
-
+  
   public logout(): void {
     localStorage.removeItem('token');
     this.loggedIn.next(false);
     this.currentUserRole.next('');
   }
+  
 
   public getRole(): Observable<string> {
     return this.currentUserRole.asObservable();

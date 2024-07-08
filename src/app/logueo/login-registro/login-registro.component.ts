@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login-registro',
@@ -14,7 +15,11 @@ export class LoginRegistroComponent implements OnInit {
   isLogin: boolean = true;
   isDarkTheme: boolean = false;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -49,10 +54,21 @@ export class LoginRegistroComponent implements OnInit {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
       this.authService.login(email, password).subscribe(response => {
-        console.log('Logged in successfully');
-        this.router.navigate(['/user']);  // Cambia '/home' a la ruta que desees redirigir
+        Swal.fire({
+          icon: 'success',
+          title: 'Logged in successfully',
+          showConfirmButton: false,
+          timer: 3000
+        });
+        this.router.navigate(['/user']);  // Cambia '/user' a la ruta que desees redirigir
       }, error => {
-        console.error('Login failed', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Login failed',
+          text: error.error.message,
+          showConfirmButton: false,
+          timer: 3000
+        });
       });
     }
   }
@@ -60,9 +76,20 @@ export class LoginRegistroComponent implements OnInit {
   onSubmitRegister(): void {
     if (this.registerForm.valid) {
       this.authService.register(this.registerForm.value).subscribe(response => {
-        console.log('Registered successfully');
+        Swal.fire({
+          icon: 'success',
+          title: 'Registered successfully',
+          showConfirmButton: false,
+          timer: 3000
+        });
       }, error => {
-        console.error('Registration failed', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Registration failed',
+          text: error.error.message,
+          showConfirmButton: false,
+          timer: 3000
+        });
       });
     }
   }
